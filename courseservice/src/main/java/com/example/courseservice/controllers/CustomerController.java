@@ -42,15 +42,13 @@ class CustomerController {
     public ResponseEntity<Customer> updateCustomer(
             @RequestBody Customer customer,
             @PathVariable Long id){
-        Customer updatedCustomer = customerRepository.findById(id)
-                .orElseThrow(() -> new Resource);
-                updatedCustomer.setName(customer.getName());
-                updatedCustomer.setTown(customer.getTown());
-                updatedCustomer.setAge(customer.getAge());
+        Customer updatedCustomer = customerRepository.findById(id).get();
+            updatedCustomer.setName(customer.getName());
+            updatedCustomer.setTown(customer.getTown());
+            updatedCustomer.setAge(customer.getAge());
 
-                customerRepository.save(updatedCustomer);
+            customerRepository.save(updatedCustomer);
 
-                return ResponseEntity.ok(updatedCustomer);
+        return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
     }
-    )
 }
