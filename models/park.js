@@ -23,4 +23,54 @@ Park.prototype.mostPopularAttraction = function () {
     return mostPopularDinosaur
 }
 
+// alternative (much simpler)
+// Park.prototype.findMostAttractiveDinosaur = function () {
+//     let mostAttractiveDino = this.dinosaurs[0];
+  
+//     for (const dino of this.dinosaurs) {
+//       if (dino.guestsAttractedPerDay > mostAttractiveDino.guestsAttractedPerDay) {
+//         mostAttractiveDino = dino;
+//       }
+//     }
+  
+//     return mostAttractiveDino;
+//   }
+
+
+Park.prototype.countDailyVisitors = function () {
+    let dailyVisitors = 0;
+
+    for (const dino of this.dinosaurCollection) {
+        dailyVisitors += dino.guestsAttractedPerDay;
+    }
+
+    return dailyVisitors;
+}
+// Park.prototype.findDinosaurBySpecies = 
+//     function (dinosaurCollection, dinosaur) {
+      
+
+
+Park.prototype.numberOfDinosaursByDiet = function () {
+    const numberOfDinosaursByDiet = {};
+  
+    for (const dinosaur of this.dinosaurs) {
+      if (numberOfDinosaursByDiet[dinosaur.diet]) {
+        numberOfDinosaursByDiet[dinosaur.diet] += 1;
+      }
+      else {
+        numberOfDinosaursByDiet[dinosaur.diet] = 1;
+      }
+    }
+  //(dinosaur.diet = key, value = 1)
+  //  while looping through list, if example of dinosaur diet
+  //  occurs then add 1 to total
+  // else set total to 1 (so first time it loops will go to else)
+  
+    return numberOfDinosaursByDiet;
+  }
+
+
+
 module.exports = Park
+
