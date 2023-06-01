@@ -1,5 +1,9 @@
 package com.example.courseservice.repositories;
 
-public interface BookingRepository {
-    
+import com.example.courseservice.models.Booking;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BookingRepository extends JpaRepository<Booking, Long> {
+
+
 }

@@ -1,6 +1,8 @@
 package com.example.courseservice.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -20,6 +22,9 @@ public class Customer {
     @Column
     private int age;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Booking> customerBookings;
+
     public Customer() {
     }
 
@@ -27,6 +32,7 @@ public class Customer {
         this.name = name;
         this.town = town;
         this.age = age;
+        this.customerBookings = new ArrayList<>();
     }
 
     public Long getId() {
@@ -59,5 +65,17 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<Booking> getCustomerBookings() {
+        return customerBookings;
+    }
+
+    public void setCustomerBookings(List<Booking> customerBookings) {
+        this.customerBookings = customerBookings;
+    }
+
+    public void addBooking (Booking customerBooking) {
+        this.customerBookings.add(customerBooking);
     }
 }

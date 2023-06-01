@@ -1,6 +1,8 @@
 package com.example.courseservice.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -19,6 +21,9 @@ public class Course {
     @Column
     private double starRating;
 
+    @OneToMany(mappedBy = "course")
+    private List<Booking> courseBookings;
+
     public Course() {
     }
 
@@ -26,6 +31,7 @@ public class Course {
         this.name = name;
         this.town = town;
         this.starRating = starRating;
+        this.courseBookings = new ArrayList<>();
     }
 
     public Long getId() {
@@ -58,5 +64,17 @@ public class Course {
 
     public void setStarRating(double starRating) {
         this.starRating = starRating;
+    }
+
+    public List<Booking> getBookings() {
+        return courseBookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.courseBookings = bookings;
+    }
+
+    public void addBooking(Booking booking) {
+        this.courseBookings.add(booking);
     }
 }

@@ -12,10 +12,20 @@ public class Booking {
     private Long id;
 
     @Column
-    LocalDate date;
+    private LocalDate date;
 
-    public Booking(LocalDate date) {
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    public Booking(LocalDate date, Course course, Customer customer) {
         this.date = date;
+        this.course = course;
+        this.customer = customer;
     }
 
     public Booking() {
@@ -35,5 +45,21 @@ public class Booking {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
